@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="38e78df5-ff17-4042-bad4-5c7345ff210c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fu/de200046/dao/EmployeeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fu/de200046/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fu/de200046/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="38e78df5-ff17-4042-bad4-5c7345ff210c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +41,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/HSF201/Code/Chapter1/Slot1/Chapter1-JPA-Ex1",
+    "last_opened_file_path": "D:/HSF201/Code/Chapter1/Slot2/Chapter1-JPA-Ex1",
     "onboarding.tips.debug.path": "C:/Users/HuuHieu/IdeaProjects/Chapter1-JPA-Ex1/src/main/java/fu/de200046/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
