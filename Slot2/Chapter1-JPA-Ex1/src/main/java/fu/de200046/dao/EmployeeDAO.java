@@ -2,6 +2,8 @@ package fu.de200046.dao;
 
 import fu.de200046.pojo.Employee;
 import jakarta.persistence.*;
+import jakarta.persistence.EntityManager;
+import java.util.List;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,4 +28,23 @@ public class EmployeeDAO {
             em.close(); // sau dong nay, e (neu con giu tham chieu) la DETACHED
         }
     }
+    public Employee findById(Long id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.find(Employee.class, id); // tra ve null neu khong ton tai
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Employee> findAll() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT e FROM Employee e", Employee.class)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
 }

@@ -8,26 +8,39 @@ import jakarta.persistence.Persistence;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import jakarta.persistence.EntityManager;
 
 public class Main {
 
     public static void main(String[] args) {
-
         EmployeeDAO employeeDAO = new EmployeeDAO();
+        // ===== TEST TODO 4 =====
 
-        Employee employee = new Employee();
-        employee.setFullName("Nguyen Van A");
-        employee.setEmail("nguyenvana@gmail.com");
-        employee.setSalary(new BigDecimal("15000000"));
-        employee.setGender(Gender.MALE);
-        employee.setHireDate(LocalDate.of(2024, 1, 15));
-        employee.setActive(true);
+// Test findById()
+        Employee found = employeeDAO.findById(1L);
 
-        // Test TODO 0.3: save()
-        employeeDAO.save(employee);
+        if (found != null) {
+            System.out.println("FindById:");
+            System.out.println("ID: " + found.getId());
+            System.out.println("Name: " + found.getFullName());
+            System.out.println("Email: " + found.getEmail());
+        } else {
+            System.out.println("Employee not found!");
+        }
 
-        // ID được tự động sinh sau khi persist()
-        System.out.println("Employee saved successfully!");
-        System.out.println("Generated ID: " + employee.getId());
+
+// Test findAll()
+        System.out.println("\nFindAll:");
+
+        List<Employee> employees = employeeDAO.findAll();
+
+        for (Employee e : employees) {
+            System.out.println(
+                    e.getId() + " - "
+                            + e.getFullName() + " - "
+                            + e.getEmail()
+            );
+        }
     }
 }
