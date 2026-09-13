@@ -14,33 +14,29 @@ import jakarta.persistence.EntityManager;
 public class Main {
 
     public static void main(String[] args) {
-        // ===== TEST TODO 5 =====
 
         EmployeeDAO employeeDAO = new EmployeeDAO();
-
-
-        // ===== TEST TODO 6: UPDATE =====
+// ===== TEST TODO 7: DELETE =====
 
         Employee employee = employeeDAO.findById(1L);
 
         if (employee != null) {
 
-            System.out.println("Before update:");
+            System.out.println("Before delete:");
+            System.out.println("ID: " + employee.getId());
             System.out.println("Name: " + employee.getFullName());
-            System.out.println("Salary: " + employee.getSalary());
 
-            // Sửa salary
-            employee.setSalary(new BigDecimal("20000000"));
+            employeeDAO.delete(1L);
 
-            // Update
-            employeeDAO.update(employee);
+            Employee deleted = employeeDAO.findById(1L);
 
-            // Đọc lại để kiểm tra
-            Employee updated = employeeDAO.findById(1L);
+            System.out.println("\nAfter delete:");
 
-            System.out.println("\nAfter update:");
-            System.out.println("Name: " + updated.getFullName());
-            System.out.println("Salary: " + updated.getSalary());
+            if (deleted == null) {
+                System.out.println("Employee deleted successfully!");
+            } else {
+                System.out.println("Delete failed!");
+            }
 
         } else {
             System.out.println("Employee not found!");
