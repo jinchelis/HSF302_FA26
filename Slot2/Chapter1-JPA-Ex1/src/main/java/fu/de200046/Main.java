@@ -3,13 +3,9 @@ package fu.de200046;
 import fu.de200046.dao.EmployeeDAO;
 import fu.de200046.pojo.Employee;
 import fu.de200046.pojo.Gender;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
-import jakarta.persistence.EntityManager;
 
 public class Main {
 
@@ -47,5 +43,38 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Duplicate email detected successfully!");
         }
+        /*
+         * ===== TODO 0.10: ENTITY LIFECYCLE =====
+         *
+         * 1. NEW / TRANSIENT
+         *    - Entity object vừa được tạo bằng new.
+         *    - Chưa được quản lý bởi EntityManager.
+         *
+         * 2. MANAGED
+         *    - Sau khi gọi em.persist(entity),
+         *      entity trở thành Managed.
+         *    - JPA sẽ theo dõi các thay đổi của entity.
+         *
+         * 3. DETACHED
+         *    - Khi EntityManager bị close,
+         *      entity không còn được quản lý.
+         *    - Entity vẫn tồn tại trong Java memory.
+         *
+         * 4. REMOVED
+         *    - Sau khi gọi em.remove(entity),
+         *      entity được đánh dấu để xóa khỏi database.
+         *
+         * Lifecycle:
+         *
+         * NEW
+         *   ↓ persist()
+         * MANAGED
+         *   ↓ EntityManager.close()
+         * DETACHED
+         *
+         * MANAGED
+         *   ↓ remove()
+         * REMOVED
+         */
     }
 }
