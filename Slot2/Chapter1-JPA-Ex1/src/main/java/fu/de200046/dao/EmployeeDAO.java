@@ -3,6 +3,7 @@ package fu.de200046.dao;
 import fu.de200046.pojo.Employee;
 import jakarta.persistence.*;
 import jakarta.persistence.EntityManager;
+
 import java.util.List;
 
 import java.math.BigDecimal;
@@ -28,6 +29,7 @@ public class EmployeeDAO {
             em.close(); // sau dong nay, e (neu con giu tham chieu) la DETACHED
         }
     }
+
     public Employee findById(Long id) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -47,4 +49,44 @@ public class EmployeeDAO {
         }
     }
 
+    public Employee findByEmail(String email) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            List<Employee> result = em.createQuery(
+                            "SELECT e FROM Employee e WHERE e.email = :email", Employee.class)
+                    .setParameter("email", email)
+                    .getResultList();
+            return result.isEmpty() ? null : result.get(0);
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Employee> findBySalaryGreaterThanAndActive(BigDecimal minSalary) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery(
+                            "SELECT e FROM Employee e WHERE e.salary > :minSalary AND e.active = true",
+                            Employee.class)
+                    .setParameter("minSalary", minSalary)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Employee> findBySalaryGreaterThan(BigDecimal salary) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            return em.createQuery(
+                            "SELECT e FROM Employee e WHERE e.salary > :salary",
+                            Employee.class
+                    )
+                    .setParameter("salary", salary)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }

@@ -14,32 +14,51 @@ import jakarta.persistence.EntityManager;
 public class Main {
 
     public static void main(String[] args) {
+        // ===== TEST TODO 5 =====
+
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        // ===== TEST TODO 4 =====
 
-// Test findById()
-        Employee found = employeeDAO.findById(1L);
 
-        if (found != null) {
-            System.out.println("FindById:");
-            System.out.println("ID: " + found.getId());
-            System.out.println("Name: " + found.getFullName());
-            System.out.println("Email: " + found.getEmail());
+        System.out.println("===== Find By Email =====");
+
+        Employee employeeByEmail =
+                employeeDAO.findByEmail("nguyenvana@gmail.com");
+
+        if (employeeByEmail != null) {
+            System.out.println("Found employee:");
+            System.out.println("ID: " + employeeByEmail.getId());
+            System.out.println("Name: " + employeeByEmail.getFullName());
+            System.out.println("Email: " + employeeByEmail.getEmail());
         } else {
             System.out.println("Employee not found!");
         }
 
 
-// Test findAll()
-        System.out.println("\nFindAll:");
 
-        List<Employee> employees = employeeDAO.findAll();
+        System.out.println("\n===== Find By Email (Not Found) =====");
+
+        Employee notFound =
+                employeeDAO.findByEmail("khongtontai@gmail.com");
+
+        if (notFound != null) {
+            System.out.println("Found employee: "
+                    + notFound.getFullName());
+        } else {
+            System.out.println("No employee with this email!");
+        }
+
+
+
+        System.out.println("\n===== Find By Salary =====");
+
+        List<Employee> employees =
+                employeeDAO.findBySalaryGreaterThan(new BigDecimal("10000000"));
 
         for (Employee e : employees) {
             System.out.println(
                     e.getId() + " - "
                             + e.getFullName() + " - "
-                            + e.getEmail()
+                            + e.getSalary()
             );
         }
     }
