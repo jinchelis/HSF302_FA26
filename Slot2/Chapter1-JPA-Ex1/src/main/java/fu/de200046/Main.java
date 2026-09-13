@@ -19,47 +19,31 @@ public class Main {
         EmployeeDAO employeeDAO = new EmployeeDAO();
 
 
-        System.out.println("===== Find By Email =====");
+        // ===== TEST TODO 6: UPDATE =====
 
-        Employee employeeByEmail =
-                employeeDAO.findByEmail("nguyenvana@gmail.com");
+        Employee employee = employeeDAO.findById(1L);
 
-        if (employeeByEmail != null) {
-            System.out.println("Found employee:");
-            System.out.println("ID: " + employeeByEmail.getId());
-            System.out.println("Name: " + employeeByEmail.getFullName());
-            System.out.println("Email: " + employeeByEmail.getEmail());
+        if (employee != null) {
+
+            System.out.println("Before update:");
+            System.out.println("Name: " + employee.getFullName());
+            System.out.println("Salary: " + employee.getSalary());
+
+            // Sửa salary
+            employee.setSalary(new BigDecimal("20000000"));
+
+            // Update
+            employeeDAO.update(employee);
+
+            // Đọc lại để kiểm tra
+            Employee updated = employeeDAO.findById(1L);
+
+            System.out.println("\nAfter update:");
+            System.out.println("Name: " + updated.getFullName());
+            System.out.println("Salary: " + updated.getSalary());
+
         } else {
             System.out.println("Employee not found!");
-        }
-
-
-
-        System.out.println("\n===== Find By Email (Not Found) =====");
-
-        Employee notFound =
-                employeeDAO.findByEmail("khongtontai@gmail.com");
-
-        if (notFound != null) {
-            System.out.println("Found employee: "
-                    + notFound.getFullName());
-        } else {
-            System.out.println("No employee with this email!");
-        }
-
-
-
-        System.out.println("\n===== Find By Salary =====");
-
-        List<Employee> employees =
-                employeeDAO.findBySalaryGreaterThan(new BigDecimal("10000000"));
-
-        for (Employee e : employees) {
-            System.out.println(
-                    e.getId() + " - "
-                            + e.getFullName() + " - "
-                            + e.getSalary()
-            );
         }
     }
 }
