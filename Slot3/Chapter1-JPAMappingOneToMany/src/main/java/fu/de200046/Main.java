@@ -21,9 +21,10 @@ public class Main {
                 LocalDate.now()
         );
 
-        employee.setDepartment(department);
+        department.getEmployees().add(employee);
 
-        System.out.println("Employee: " + employee.getFullName());
-        System.out.println("Department: " + employee.getDepartment().getName());
+        System.out.println("Department: " + department.getName());
+        System.out.println("Number of employees: "
+                + department.getEmployees().size());
     }
 }
