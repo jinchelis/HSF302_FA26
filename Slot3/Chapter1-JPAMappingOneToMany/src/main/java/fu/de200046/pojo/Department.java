@@ -36,6 +36,8 @@ public class Department {
         this.employees = employees;
     }
 
+
+
     public Department(String name, String location) {
         this.name = name;
         this.location = location;
@@ -63,5 +65,15 @@ public class Department {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public void addEmployee(Employee e) {
+        this.employees.add(e);
+        e.setDepartment(this);
+    }
+
+    public void removeEmployee(Employee e) {
+        this.employees.remove(e);
+        e.setDepartment(null);
     }
 }

@@ -11,20 +11,34 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Department department = new Department("IT", "Da Nang");
+        Department dept = new Department("IT", "Da Nang");
 
-        Employee employee = new Employee(
-                "test@gmail.com",
-                "Test Employee",
-                Gender.MALE,
-                new BigDecimal("10000000"),
+        Employee emp = new Employee(
+                "test@company.com",
+                "Test",
+                Gender.OTHER,
+                new BigDecimal("1000"),
                 LocalDate.now()
         );
 
-        department.getEmployees().add(employee);
+        dept.addEmployee(emp);
 
-        System.out.println("Department: " + department.getName());
-        System.out.println("Number of employees: "
-                + department.getEmployees().size());
+        System.out.println(
+                dept.getEmployees().contains(emp)
+        );
+
+        System.out.println(
+                emp.getDepartment() == dept
+        );
+
+        dept.removeEmployee(emp);
+
+        System.out.println(
+                dept.getEmployees().contains(emp)
+        );
+
+        System.out.println(
+                emp.getDepartment() == null
+        );
     }
 }
