@@ -21,16 +21,9 @@ public class Main {
                 LocalDate.now()
         );
 
-        System.out.println("Department:");
-        System.out.println("Name: " + department.getName());
-        System.out.println("Location: " + department.getLocation());
+        employee.setDepartment(department);
 
-        System.out.println("\nEmployee:");
-        System.out.println("Name: " + employee.getFullName());
-        System.out.println("Email: " + employee.getEmail());
-        System.out.println("Gender: " + employee.getGender());
-        System.out.println("Salary: " + employee.getSalary());
-        System.out.println("Hire Date: " + employee.getHireDate());
-        System.out.println("Active: " + employee.isActive());
+        System.out.println("Employee: " + employee.getFullName());
+        System.out.println("Department: " + employee.getDepartment().getName());
     }
 }
